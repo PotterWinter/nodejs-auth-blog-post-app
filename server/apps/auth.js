@@ -51,9 +51,13 @@ authRouter.post("/login", async (req, res) => {
 
   if (!isValidPassword) {
     return res.status(401).json({
-      message: "password not valid",
+      message: "Invalid username or password",
     });
   }
+
+  // id คือ user id
+  // firstName คือ Firstname ของ User
+  // lastName คือ Lastname ของ User
 
   const token = jwt.sign(
     {
@@ -68,8 +72,8 @@ authRouter.post("/login", async (req, res) => {
   );
 
   return res.json({
-    message: "login succesfully",
-    token,
+    message: "login successfully",
+    token: `${token}`,
   });
 });
 
